@@ -55,6 +55,20 @@ exports.updateTodo=(req,res)=>{
         res.status(404).json({status:err})
     })
 }
+
+exports.deleteTodo =(req,res)=>{
+  
+    let  _id = req.body['_id']
+
+    TodoModel.deleteOne({_id:_id},{$upset:true},).then((result)=>{
+            res.status(201).json({status:'success',data:result})
+    }).catch((err)=>{
+        res.status(404).json({status:err})
+    })
+
+}
+
+
 exports. statusUpdateTodo=(req,res)=>{
     let reqBody  = req.body 
     let  TodoStatus = reqBody['TodoStatus']
